@@ -48,13 +48,21 @@ begin
 	
 	MULOP_PROC: process (low, high)
 	begin
-		if(low>= high) then
+		if(unsigned(I_1)=0 and unsigned(I_2)=0) then
+			out_1 <= to_unsigned(1,17);
+		elsif(low>= high) then
 			 out_1 <= ('0' & low) - ('0' & high); -- concatenation with 0 to match bit length is AI generated suggestion
+			 if(out_1 = 65536) then
+			 	out_1 <= to_unsigned(0, 17); -- 2^16 is represented as 0 (overflow)
+			 end if;
 		else
 			out_1 <= ('0' & low) + 2**16 + 1 - ('0' & high);
+			 if(out_1 = 65536) then
+			 	out_1 <= to_unsigned(0, 17); -- 2^16 is represented as 0 (overflow)
+			 end if;
 		end if;
 	end process MULOP_PROC;
 	
-	O_1 <= std_logic_vector(out_1(15 downto 0));
+	O_1 <= std_logic_vector(out_1(15 downto 0)); --outputs only the lower 16 bits of the 17 bit out_1 vector
 
 end Behavioral;
