@@ -38,7 +38,7 @@ END tb_trafo;
 ARCHITECTURE behavior OF tb_trafo IS 
  
     -- Component Declaration for the Unit Under Test (UUT)
- 
+  
     COMPONENT trafo
     PORT(
          X1 : IN  std_logic_vector(15 downto 0);
@@ -58,14 +58,15 @@ ARCHITECTURE behavior OF tb_trafo IS
     
 
    --Inputs
-   signal X1 : std_logic_vector(15 downto 0) := (others => '0');
-   signal X2 : std_logic_vector(15 downto 0) := (others => '0');
-   signal X3 : std_logic_vector(15 downto 0) := (others => '0');
-   signal X4 : std_logic_vector(15 downto 0) := (others => '0');
-   signal Z1 : std_logic_vector(15 downto 0) := (others => '0');
-   signal Z2 : std_logic_vector(15 downto 0) := (others => '0');
-   signal Z3 : std_logic_vector(15 downto 0) := (others => '0');
-   signal Z4 : std_logic_vector(15 downto 0) := (others => '0');
+   signal X1 : std_logic_vector(15 downto 0) := x"ffff";
+   signal X2 : std_logic_vector(15 downto 0) := x"aaaa";
+   signal X3 : std_logic_vector(15 downto 0) := x"5555";
+   signal X4 : std_logic_vector(15 downto 0) := x"2492";
+   
+	signal Z1 : std_logic_vector(15 downto 0) := x"db6d";
+   signal Z2 : std_logic_vector(15 downto 0) := x"1c71";
+   signal Z3 : std_logic_vector(15 downto 0) := x"cccc";
+   signal Z4 : std_logic_vector(15 downto 0) := x"0002";
 
  	--Outputs
    signal Y1 : std_logic_vector(15 downto 0);

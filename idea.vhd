@@ -42,7 +42,7 @@ entity idea is
 end idea;
 
 architecture Structural of idea is
-
+	-- components
 	component TRAFO
 		-- output transformation input
 		 X1 : IN  std_logic_vector(15 downto 0);
@@ -82,9 +82,24 @@ architecture Structural of idea is
            Y4 : out  STD_LOGIC_VECTOR(15 downto 0));
 	end component;
 	
-	signal 
+	-- intermediate signals are outputs from each round module
+	signal R_11, R_12, R_13, R_14: STD_LOGIC_VECTOR(15 downto 0);
+	signal R_21, R_22, R_23, R_24: STD_LOGIC_VECTOR(15 downto 0);
+	signal R_31, R_32, R_33, R_34: STD_LOGIC_VECTOR(15 downto 0);
+	signal R_41, R_42, R_43, R_44: STD_LOGIC_VECTOR(15 downto 0);
+	signal R_51, R_52, R_53, R_54: STD_LOGIC_VECTOR(15 downto 0);
+	signal R_61, R_62, R_63, R_64: STD_LOGIC_VECTOR(15 downto 0);
+	signal R_71, R_72, R_73, R_74: STD_LOGIC_VECTOR(15 downto 0);
+	
+	--output from last round module -> input to trafo module
+	signal R_81, R_82, R_83, R_84: STD_LOGIC_VECTOR(15 downto 0);
+	
+	--partial keys
+	
+	
 begin
 
+	R1: ROUND port map()
 
 end Structural;
 
