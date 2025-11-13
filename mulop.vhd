@@ -20,11 +20,11 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
--- Uncomment the following library declaration if using
+-- Uncomment the folab_mod2ning library declaration if using
 -- arithmetic functions with Signed or Unsigned values
 use IEEE.NUMERIC_STD.ALL;
 
--- Uncomment the following library declaration if instantiating
+-- Uncomment the folab_mod2ning library declaration if instantiating
 -- any Xilinx primitives in this code.
 --library UNISIM;
 --use UNISIM.VComponents.all;
@@ -36,25 +36,44 @@ entity mulop is
 end mulop;
 
 architecture Behavioral of mulop is
-	signal product: unsigned(31 downto 0);
-	signal low: unsigned (15 downto 0);
-	signal high: unsigned (15 downto 0);
-	signal out_1: unsigned (16 downto 0); -- 17 bits allows overflow (helped by AI)
-
 begin
-	product <= unsigned(I_1) * unsigned(I_2);
-	low <= product(15 downto 0); -- ab mod 2^n
-	high <= product (31 downto 16); -- ab div 2^n
-	
-	MULOP_PROC: process (low, high)
-	begin
-		if(low>= high) then
-			 out_1 <= ('0' & low) - ('0' & high); -- concatenation with 0 to match bit length is AI generated suggestion
-		else
-			out_1 <= ('0' & low) + 2**16 + 1 - ('0' & high);
-		end if;
-	end process MULOP_PROC;
-	
-	O_1 <= std_logic_vector(out_1(15 downto 0));
+    MULOP_PROC: process (I_1, I_2)
+        variable a       : unsigned(16 downto 0);
+        variable b       : unsigned(16 downto 0);
+        variable ab      : unsigned(33 downto 0);
+        variable ab_mod2n: unsigned(15 downto 0);
+        variable ab_div2n: unsigned(15 downto 0);
+        variable out_1   : unsigned(16 downto 0); -- 17 bit temporary output
+    begin
+        if(unsigned(I_1) = 0 and unsigned(I_2) = 0) then
+            a := to_unsigned(2**16, 17); -- note: 65536
+            b := to_unsigned(2**16, 17);
+            out_1 := to_unsigned(1, 17);
+        else
+            if(unsigned(I_1) = 0) then
+                a := to_unsigned(2**16, 17);
+            else
+                a := '0' & unsigned(I_1);
+            end if;
 
+            if(unsigned(I_2) = 0) then
+                b := to_unsigned(2**16, 17);
+            else
+                b := '0' & unsigned(I_2);
+            end if;
+
+            ab := a * b;
+            ab_mod2n := ab(15 downto 0);
+            ab_div2n := ab(31 downto 16);
+
+            if(ab_mod2n >= ab_div2n) then
+                out_1 := ('0' & ab_mod2n) - ('0' & ab_div2n);
+            else
+                out_1 := ('0' & ab_mod2n) - ('0' & ab_div2n) + to_unsigned((2**16)+1, 17);
+            end if;
+        end if;
+
+        -- Assign result to output signal
+        O_1 <= std_logic_vector(out_1(15 downto 0));
+    end process MULOP_PROC;
 end Behavioral;
