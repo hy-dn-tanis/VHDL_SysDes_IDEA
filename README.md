@@ -6,7 +6,7 @@ This project implements the **IDEA (International Data Encryption Algorithm)** e
 
 ## Description
 
-The IDEA algorithm is a powerful encryption scheme that uses a combination of three algebraic operations:
+The IDEA algorithm is an encryption scheme that uses a combination of three algebraic operations:
 - Bitwise XOR (⊕)
 - Addition modulo 2^16 (⊞)
 - Multiplication modulo 2^16 + 1 (⊙)
@@ -76,43 +76,6 @@ Performs the final output transformation after the 8 encryption rounds.
 └── idea.gise          # Xilinx project settings
 ```
 
-## Usage
-
-### Prerequisites
-
-- Xilinx ISE Design Suite (for synthesis and simulation)
-- VHDL simulator (e.g., ModelSim, GHDL, or ISE ISim)
-
-### Simulation
-
-1. Open the project in Xilinx ISE using `idea.xise`
-2. Use the provided testbenches to verify individual modules:
-   - `tb_addop.vhd` - Test addition operation
-   - `tb_mulop.vhd` - Test multiplication operation
-   - `tb_xorop.vhd` - Test XOR operation
-   - `tb_round.vhd` - Test round function
-   - `tb_trafo.vhd` - Test output transformation
-
-### Synthesis
-
-1. Open the project in Xilinx ISE
-2. Select the target FPGA device
-3. Run synthesis, implementation, and generate bitstream
-4. Program the FPGA with the generated bitstream
-
-## Technical Details
-
-- **Data Width**: 64 bits (4 × 16-bit blocks)
-- **Key Length**: 128 bits
-- **Number of Rounds**: 8
-- **Technology**: Designed for Xilinx FPGA implementation
-- **Architecture**: Structural (component-based design)
-
-## Algorithm Notes
-
-The IDEA algorithm operates through 8.5 rounds:
-- **8 Rounds**: Each uses 6 subkeys derived from the main 128-bit key
-- **Final Half-Round**: Output transformation using 4 additional subkeys
 
 Each round performs:
 1. Multiplication and addition with subkeys
@@ -124,7 +87,3 @@ Each round performs:
 
 - IDEA Algorithm: [Wikipedia - IDEA](https://en.wikipedia.org/wiki/International_Data_Encryption_Algorithm)
 - Original Paper: X. Lai and J. Massey, "A Proposal for a New Block Encryption Standard," 1990
-
-## License
-
-This project is provided for educational purposes.
