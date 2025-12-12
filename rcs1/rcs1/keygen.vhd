@@ -142,13 +142,13 @@ begin
             part_key4 <= keys(51);
             part_key5 <= x"0000";
             part_key6 <= x"0000";
-    	when others => --for undefined cases
-        	part_key1 <= (others => 'U');
-        	part_key2 <= (others => 'U');
-        	part_key3 <= (others => 'U');
-        	part_key4 <= (others => 'U');
-        	part_key5 <= (others => 'U');
-        	part_key6 <= (others => 'U');
+			when others =>
+				part_key1 <= (others => '0');
+				part_key2 <= (others => '0');
+				part_key3 <= (others => '0');
+				part_key4 <= (others => '0');
+    			part_key5 <= (others => '0');
+    			part_key6 <= (others => '0');
     end case;
 	 end process select_round;
 

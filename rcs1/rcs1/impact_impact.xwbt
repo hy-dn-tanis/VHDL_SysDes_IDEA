@@ -1,0 +1,8 @@
+INTSTYLE=impact
+INFILE=/nas/lrz/home/ge48lin/submit/rcs1/impact.xsl
+OUTFILE=/nas/lrz/home/ge48lin/submit/rcs1/impact.xsl
+FAMILY=Multiple
+PART=Multiple
+WORKINGDIR=/nas/lrz/home/ge48lin/submit/rcs1
+LICENSE=iMPACT
+USER_INFO=iMPACT

@@ -1,1 +1,1 @@
--intstyle "ise" -incremental -o "/nas/lrz/home/ge48lin/submit/rcs1/tb_idea_single_isim_beh.exe" -prj "/nas/lrz/home/ge48lin/submit/rcs1/tb_idea_single_beh.prj" "work.tb_idea_single" 
+-intstyle "ise" -incremental -o "/nas/lrz/home/ge48lin/submit/rcs1/tb_idea_single_isim_beh.exe" -prj "/nas/lrz/home/ge48lin/submit/rcs1/tb_idea_single_beh.prj" "tb_idea_single" 

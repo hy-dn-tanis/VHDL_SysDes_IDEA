@@ -1,0 +1,8 @@
+INTSTYLE=ise
+INFILE=/nas/lrz/home/ge48lin/submit/rcs1/idea_com.ncd
+OUTFILE=/nas/lrz/home/ge48lin/submit/rcs1/idea_com.bit
+FAMILY=Spartan3E
+PART=xc3s500e-4fg320
+WORKINGDIR=/nas/lrz/home/ge48lin/submit/rcs1
+LICENSE=ISE
+USER_INFO=176488445_177900754_210800195_909
