@@ -132,7 +132,7 @@ begin
 
 --instantiate components
 
-	CONTROL: control port map(CLOCK, START, round_sel, rdy, enable, sel);
+	cont_mod: control port map(CLOCK, START, round_sel, rdy, enable, sel);
 	-- multiplexer selects between plain text input (X_i) and the vectors looped from previous round output saved in the registers (Qi)
 	-- multiplexer outputs signal that goes into the round module (INi)
 	mux1: mux2x1 port map(sel,X_1, Q1, IN1);
@@ -155,7 +155,7 @@ begin
 	
 	--output transformation
 	--takes in the keys from keygen, saved values in register from final round, and outputs final cipher text (Y_i)
-	output_tf: trafo port map(Q1, Q2, Q3, Q4, KEY1, KEY2, KEY3, KEY4, Y_1,Y_2,Y_3, Y_4);
+	output_tf: trafo port map(Q1, Q2, Q3, Q4, Y_1,Y_2,Y_3, Y_4, KEY1, KEY2, KEY3, KEY4);
 
 end Structural;
 

@@ -41,26 +41,28 @@ ARCHITECTURE behavior OF tb_keygen IS
  
     COMPONENT keygen
     PORT(
-         round : IN  std_logic;
+         round : IN  std_logic_vector(3 downto 0);
          key : IN  std_logic_vector(127 downto 0);
          part_key1 : OUT  std_logic_vector(15 downto 0);
          part_key2 : OUT  std_logic_vector(15 downto 0);
-         part_key5 : OUT  std_logic_vector(15 downto 0);
+         part_key3 : OUT  std_logic_vector(15 downto 0);
          part_key4 : OUT  std_logic_vector(15 downto 0);
-         part_key6 : OUT  std_logic_vector(15 downto 0)
+         part_key5 : OUT  std_logic_vector(15 downto 0);
+			part_key6 : OUT  std_logic_vector(15 downto 0)
         );
     END COMPONENT;
     
 
    --Inputs
-   signal round : std_logic := '0';
-   signal key : std_logic_vector(127 downto 0) := (others => '0');
+   signal round : std_logic_vector(3 downto 0) := "0000";
+   signal key : std_logic_vector(127 downto 0) := x"00010002000300040005000600070008";
 
  	--Outputs
    signal part_key1 : std_logic_vector(15 downto 0);
    signal part_key2 : std_logic_vector(15 downto 0);
-   signal part_key5 : std_logic_vector(15 downto 0);
+   signal part_key3 : std_logic_vector(15 downto 0);
    signal part_key4 : std_logic_vector(15 downto 0);
+   signal part_key5 : std_logic_vector(15 downto 0);
    signal part_key6 : std_logic_vector(15 downto 0);
    -- No clocks detected in port list. Replace <clock> below with 
    -- appropriate port name 
@@ -73,8 +75,9 @@ BEGIN
           key => key,
           part_key1 => part_key1,
           part_key2 => part_key2,
-          part_key5 => part_key5,
+          part_key3 => part_key3,
           part_key4 => part_key4,
+			 part_key5 => part_key5,
           part_key6 => part_key6
         );
 
