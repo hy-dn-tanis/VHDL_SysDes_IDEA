@@ -1,0 +1,1 @@
+xst -intstyle ise -ifn "/nas/lrz/home/ge48lin/submit/rcs1/idea_com.xst" -ofn "/nas/lrz/home/ge48lin/submit/rcs1/idea_com.syr" 

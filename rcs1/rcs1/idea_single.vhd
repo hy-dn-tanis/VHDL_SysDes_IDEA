@@ -107,8 +107,9 @@ component keygen
            key : in  STD_LOGIC_VECTOR(127 downto 0);
            part_key1 : out  STD_LOGIC_VECTOR(15 downto 0);
            part_key2 : out  STD_LOGIC_VECTOR(15 downto 0);
+           part_key3 : out  STD_LOGIC_VECTOR(15 downto 0);
+			  part_key4 : out  STD_LOGIC_VECTOR(15 downto 0);
            part_key5 : out  STD_LOGIC_VECTOR(15 downto 0);
-           part_key4 : out  STD_LOGIC_VECTOR(15 downto 0);
            part_key6 : out  STD_LOGIC_VECTOR(15 downto 0));
 end component;
 
@@ -157,5 +158,6 @@ begin
 	--takes in the keys from keygen, saved values in register from final round, and outputs final cipher text (Y_i)
 	output_tf: trafo port map(Q1, Q2, Q3, Q4, Y_1,Y_2,Y_3, Y_4, KEY1, KEY2, KEY3, KEY4);
 
+	READY <= rdy;
 end Structural;
 

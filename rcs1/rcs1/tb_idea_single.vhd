@@ -60,11 +60,11 @@ ARCHITECTURE behavior OF tb_idea_single IS
    --Inputs
    signal CLOCK : std_logic := '0';
    signal START : std_logic := '0';
-   signal KEY : std_logic_vector(127 downto 0) := (others => '0');
-   signal X_1 : std_logic_vector(15 downto 0) := (others => '0');
-   signal X_2 : std_logic_vector(15 downto 0) := (others => '0');
-   signal X_3 : std_logic_vector(15 downto 0) := (others => '0');
-   signal X_4 : std_logic_vector(15 downto 0) := (others => '0');
+   signal KEY : std_logic_vector(127 downto 0) := x"00010002000300040005000600070008";
+   signal X_1 : std_logic_vector(15 downto 0) := x"1111";
+   signal X_2 : std_logic_vector(15 downto 0) := x"2222";
+   signal X_3 : std_logic_vector(15 downto 0) := x"4444";
+   signal X_4 : std_logic_vector(15 downto 0) := x"8888";
 
  	--Outputs
    signal Y_1 : std_logic_vector(15 downto 0);
@@ -74,7 +74,7 @@ ARCHITECTURE behavior OF tb_idea_single IS
    signal READY : std_logic;
 
    -- Clock period definitions
-   constant CLOCK_period : time := 10 ns;
+   constant CLOCK_period : time := 20 ns;
  
 BEGIN
  
@@ -111,6 +111,11 @@ BEGIN
       wait for 100 ns;	
 
       wait for CLOCK_period*10;
+		
+		START <= '1';
+		
+		wait for CLOCK_period *5;
+		START<= '0';
 
       -- insert stimulus here 
 
