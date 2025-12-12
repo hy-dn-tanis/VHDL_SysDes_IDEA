@@ -47,6 +47,7 @@ architecture Behavioral of control is
 
 begin
 
+   -- state register, at rising edge of clocks, go to next state
 	process(CLK, START)
 	begin
 		if rising_edge(clk) then
