@@ -31,7 +31,9 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity datapath is
     Port ( CLOCK : in  STD_LOGIC;
-           EN : in  STD_LOGIC;
+           EN125 : in  STD_LOGIC;
+           EN346 : in  STD_LOGIC;
+           EN78 : in  STD_LOGIC;
            SEL : in  STD_LOGIC_VECTOR(1 downto 0);
            X1 : in  STD_LOGIC_VECTOR(15 downto 0);
            X2 : in  STD_LOGIC_VECTOR(15 downto 0);
@@ -95,24 +97,24 @@ signal MUX_OUT1, MUX_OUT2, MUX_OUT3, MUX_OUT4: std_logic_vector(15 downto 0);
 signal MULT_OUT, ADD_OUT, XOR_OUT: std_logic_vector(15 downto 0);
 
 --register saved values (Qi)
-signal Q1, Q2, Q3, Q4, Q5, Q6, Q7: std_logic_vector(15 downto 0);
+signal Q1, Q2, Q3, Q4, Q5, Q6, Q7, Q8: std_logic_vector(15 downto 0);
 
 begin
 
 	MULT: mulop port map(MUX_OUT1, MUX_OUT2, MULT_OUT);
 	ADD: addop port map(MUX_OUT3, MUX_OUT4, ADD_OUT);
-	R1: register_16bit port map(CLOCK, EN, MULT_OUT, Q1);
-	R2: register_16bit port map(CLOCK, EN, ADD_OUT, Q2);
-	R3: register_16bit port map(CLOCK, EN, ADD_OUT, Q3);
-	R4: register_16bit port map(CLOCK, EN, MULT_OUT, Q4);
-	R5: register_16bit port map(CLOCK, EN, XOR_OUT, Q5);
-	R6: register_16bit port map(CLOCK, EN, XOR_OUT, Q6);
-	R7: register_16bit port map(CLOCK, EN, MULT_OUT, Q7);
-	R8: register_16bit port map(CLOCK, EN, ADD_OUT, Q8);
+	R1: register_16bit port map(CLOCK, EN125, MULT_OUT, Q1);
+	R2: register_16bit port map(CLOCK, EN125, ADD_OUT, Q2);
+	R3: register_16bit port map(CLOCK, EN346, ADD_OUT, Q3);
+	R4: register_16bit port map(CLOCK, EN346, MULT_OUT, Q4);
+	R5: register_16bit port map(CLOCK, EN125, XOR_OUT, Q5);
+	R6: register_16bit port map(CLOCK, EN346, XOR_OUT, Q6);
+	R7: register_16bit port map(CLOCK, EN78, MULT_OUT, Q7);
+	R8: register_16bit port map(CLOCK, EN78, ADD_OUT, Q8);
 	
 	--multiplexers
 	MUX1: mux4x1 port map(SEL,X1,X4,Z5,Z6, MUX_OUT1);
-	MUX2: mux4x1 port map(SEL,Z1,Z2,Q5,Q8,MUX_OUT2);
+	MUX2: mux4x1 port map(SEL,Z1,Z4,Q5,Q8,MUX_OUT2);
 	MUX3: mux4x1 port map(SEL,X3,X2,Q6,Q7,MUX_OUT3);
 	MUX4: mux4x1 port map(SEL,Z3,Z2,MULT_OUT,MULT_OUT,MUX_OUT4);
 
