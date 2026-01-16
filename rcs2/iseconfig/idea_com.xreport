@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <report-views version="2.0" >
  <header>
-  <DateModified>2026-01-09T17:12:40</DateModified>
+  <DateModified>2026-01-16T10:24:54</DateModified>
   <ModuleName>idea_com</ModuleName>
   <SummaryTimeStamp>Unknown</SummaryTimeStamp>
-  <SavedFilePath>/nas/lrz/home/ge48lin/submit/rcs2/iseconfig/idea_com.xreport</SavedFilePath>
-  <ImplementationReportsDirectory>/nas/lrz/home/ge48lin/submit/rcs2/</ImplementationReportsDirectory>
+  <SavedFilePath>/nas/lrz/home/ge48lin/VHDL_SysDes_IDEA/rcs2/iseconfig/idea_com.xreport</SavedFilePath>
+  <ImplementationReportsDirectory>/nas/lrz/home/ge48lin/VHDL_SysDes_IDEA/rcs2/</ImplementationReportsDirectory>
   <DateInitialized>2025-12-12T15:21:15</DateInitialized>
   <EnableMessageFiltering>false</EnableMessageFiltering>
  </header>

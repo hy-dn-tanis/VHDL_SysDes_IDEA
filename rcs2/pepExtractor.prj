@@ -1,1 +1,8 @@
+work	"addop.vhd"
+work	"clockedround.vhd"
 work	"control.vhd"
+work	"datapath.vhd"
+work	"mulop.vhd"
+work	"mux4x1.vhd"
+work	"register_16bit.vhd"
+work	"xorop.vhd"

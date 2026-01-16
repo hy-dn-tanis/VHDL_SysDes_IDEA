@@ -1,0 +1,7 @@
+vhdl work "/nas/lrz/home/ge48lin/VHDL_SysDes_IDEA/rcs2/xorop.vhd"
+vhdl work "/nas/lrz/home/ge48lin/VHDL_SysDes_IDEA/rcs2/register_16bit.vhd"
+vhdl work "/nas/lrz/home/ge48lin/VHDL_SysDes_IDEA/rcs2/mux4x1.vhd"
+vhdl work "/nas/lrz/home/ge48lin/VHDL_SysDes_IDEA/rcs2/mulop.vhd"
+vhdl work "/nas/lrz/home/ge48lin/VHDL_SysDes_IDEA/rcs2/addop.vhd"
+vhdl work "/nas/lrz/home/ge48lin/VHDL_SysDes_IDEA/rcs2/datapath.vhd"
+vhdl work "/nas/lrz/home/ge48lin/VHDL_SysDes_IDEA/rcs2/clockedround.vhd"

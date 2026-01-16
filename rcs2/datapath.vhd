@@ -48,7 +48,11 @@ entity datapath is
            Y1 : out  STD_LOGIC_VECTOR(15 downto 0);
            Y2 : out  STD_LOGIC_VECTOR(15 downto 0);
            Y3 : out  STD_LOGIC_VECTOR(15 downto 0);
-           Y4 : out  STD_LOGIC_VECTOR(15 downto 0));
+           Y4 : out  STD_LOGIC_VECTOR(15 downto 0);
+			  Y1_TRAFO : out  STD_LOGIC_VECTOR(15 downto 0);
+			  Y2_TRAFO : out  STD_LOGIC_VECTOR(15 downto 0);
+			  Y3_TRAFO : out  STD_LOGIC_VECTOR(15 downto 0);
+			  Y4_TRAFO : out  STD_LOGIC_VECTOR(15 downto 0));
 end datapath;
 
 architecture Structural of datapath is

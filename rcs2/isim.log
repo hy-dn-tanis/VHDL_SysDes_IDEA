@@ -1,5 +1,5 @@
 ISim log file
-Running: /nas/lrz/home/ge48lin/submit/rcs2/tb_control_isim_beh.exe -intstyle ise -gui -tclbatch isim.cmd -wdb /nas/lrz/home/ge48lin/submit/rcs2/tb_control_isim_beh.wdb 
+Running: /nas/lrz/home/ge48lin/VHDL_SysDes_IDEA/rcs2/tb_control_isim_beh.exe -intstyle ise -gui -tclbatch isim.cmd -wdb /nas/lrz/home/ge48lin/VHDL_SysDes_IDEA/rcs2/tb_control_isim_beh.wdb 
 ISim P.20131013 (signature 0xfbc00daa)
 ----------------------------------------------------------------------
 INFO:Security:51 - The XILINXD_LICENSE_FILE environment variable is not set.
@@ -9,7 +9,7 @@ WARNING:Security:44 - Since no license file was found,
        please run the Xilinx License Configuration Manager
        (xlcm or "Manage Xilinx Licenses")
        to assist in obtaining a license.
-WARNING:Security:42 - Your license support version '2026.01' for ISIM expires in 22 days after which you will not qualify for Xilinx software updates or new releases.
+WARNING:Security:42 - Your license support version '2026.01' for ISIM expires in 15 days after which you will not qualify for Xilinx software updates or new releases.
 
 
 ----------------------------------------------------------------------

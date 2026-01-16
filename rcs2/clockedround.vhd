@@ -57,8 +57,10 @@ end clockedround;
 architecture Structural of clockedround is
 
 component datapath 
-	Port ( CLOCK : in  STD_LOGIC;
-           EN : in  STD_LOGIC;
+	 Port ( CLOCK : in  STD_LOGIC;
+           EN125 : in  STD_LOGIC;
+           EN346 : in  STD_LOGIC;
+           EN78 : in  STD_LOGIC;
            SEL : in  STD_LOGIC_VECTOR(1 downto 0);
            X1 : in  STD_LOGIC_VECTOR(15 downto 0);
            X2 : in  STD_LOGIC_VECTOR(15 downto 0);
@@ -76,7 +78,7 @@ component datapath
            Y4 : out  STD_LOGIC_VECTOR(15 downto 0));
 end component;
 
-component controller
+component control
 	   Port ( CLK : in  STD_LOGIC;
            INIT : in  STD_LOGIC;
            TRAFO : in STD_LOGIC;
@@ -88,10 +90,14 @@ component controller
            S_T: out STD_LOGIC_VECTOR(1 downto 0));	
 end component;
 
+--signals
 
-
+signal EN125, EN346, EN78, RES: STD_LOGIC;
+signal SEL, S_T: STD_LOGIC_VECTOR(1 downto 0);
 begin
 
-
+	control_mod : control port map(CLK, INIT, TRAFO, EN125, EN346, EN78, RES, SEL, S_T);
+	datapath_mod: datapath port map(CLK, EN125, EN346, EN78, SEL, X1, X2, X3, X4, Z1, Z2, Z3, Z4, Z5, Z6, Y1, Y2, Y3, Y4);
+	
 end Structural;
 

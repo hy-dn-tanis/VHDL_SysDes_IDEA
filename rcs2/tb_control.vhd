@@ -112,6 +112,7 @@ BEGIN
 		
 		wait for 100 ns;	
 		INIT <= '1';
+		TRAFO <= '1';
       wait for CLK_period * 2;
 		INIT <= '0';
 		

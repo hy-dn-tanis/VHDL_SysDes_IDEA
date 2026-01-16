@@ -1,0 +1,93 @@
+V3 56
+FL /nas/lrz/home/ge48lin/VHDL_SysDes_IDEA/rcs2/addop.vhd 2026/01/16.10:23:41 P.20131013
+EN work/addop 1768556661 FL /nas/lrz/home/ge48lin/VHDL_SysDes_IDEA/rcs2/addop.vhd \
+      PB ieee/std_logic_1164 1381692176 PB ieee/NUMERIC_STD 1381692181
+AR work/addop/Behavioral 1768556662 \
+      FL /nas/lrz/home/ge48lin/VHDL_SysDes_IDEA/rcs2/addop.vhd EN work/addop 1768556661
+FL /nas/lrz/home/ge48lin/VHDL_SysDes_IDEA/rcs2/clk_div.vhd 2026/01/16.10:23:41 P.20131013
+EN work/clk_div 1768556618 \
+      FL /nas/lrz/home/ge48lin/VHDL_SysDes_IDEA/rcs2/clk_div.vhd \
+      PB ieee/std_logic_1164 1381692176 PB ieee/std_logic_arith 1381692177 \
+      PB ieee/STD_LOGIC_UNSIGNED 1381692179
+AR work/clk_div/Behavioral 1768556619 \
+      FL /nas/lrz/home/ge48lin/VHDL_SysDes_IDEA/rcs2/clk_div.vhd EN work/clk_div 1768556618
+EN work/clockedround 0 \
+      FL /nas/lrz/home/ge48lin/VHDL_SysDes_IDEA/rcs2/clockedround.vhd \
+      PB ieee/std_logic_1164 1381692176
+AR work/clockedround/Structural 0 \
+      FL /nas/lrz/home/ge48lin/VHDL_SysDes_IDEA/rcs2/clockedround.vhd \
+      EN work/clockedround 0 CP controller CP datapath
+FL /nas/lrz/home/ge48lin/VHDL_SysDes_IDEA/rcs2/datapath.vhd 2026/01/16.10:23:41 P.20131013
+EN work/datapath 1768556669 \
+      FL /nas/lrz/home/ge48lin/VHDL_SysDes_IDEA/rcs2/datapath.vhd \
+      PB ieee/std_logic_1164 1381692176
+AR work/datapath/Structural 1768556670 \
+      FL /nas/lrz/home/ge48lin/VHDL_SysDes_IDEA/rcs2/datapath.vhd \
+      EN work/datapath 1768556669 CP mulop CP addop CP register_16bit CP mux4x1 \
+      CP xorop
+FL /nas/lrz/home/ge48lin/VHDL_SysDes_IDEA/rcs2/idea_com.vhd 2026/01/16.10:23:41 P.20131013
+EN work/idea_com 1768556622 \
+      FL /nas/lrz/home/ge48lin/VHDL_SysDes_IDEA/rcs2/idea_com.vhd \
+      PB ieee/std_logic_1164 1381692176 PB ieee/std_logic_arith 1381692177 \
+      PB ieee/STD_LOGIC_UNSIGNED 1381692179
+AR work/idea_com/Behavioral 1768556623 \
+      FL /nas/lrz/home/ge48lin/VHDL_SysDes_IDEA/rcs2/idea_com.vhd \
+      EN work/idea_com 1768556622 CP clk_div CP idea_com_inner
+FL /nas/lrz/home/ge48lin/VHDL_SysDes_IDEA/rcs2/idea_com_inner.vhd 2026/01/16.10:23:41 P.20131013
+EN work/idea_com_inner 1768556620 \
+      FL /nas/lrz/home/ge48lin/VHDL_SysDes_IDEA/rcs2/idea_com_inner.vhd \
+      PB ieee/std_logic_1164 1381692176 PB ieee/std_logic_arith 1381692177 \
+      PB ieee/STD_LOGIC_UNSIGNED 1381692179
+AR work/idea_com_inner/Behavioral 1768556621 \
+      FL /nas/lrz/home/ge48lin/VHDL_SysDes_IDEA/rcs2/idea_com_inner.vhd \
+      EN work/idea_com_inner 1768556620 CP uart CP idea_rcs2 CP mux2x1
+FL /nas/lrz/home/ge48lin/VHDL_SysDes_IDEA/rcs2/idea_rcs2.vhd 2026/01/16.10:23:41 P.20131013
+EN work/idea_rcs2 1768556616 \
+      FL /nas/lrz/home/ge48lin/VHDL_SysDes_IDEA/rcs2/idea_rcs2.vhd \
+      PB ieee/std_logic_1164 1381692176
+AR work/idea_rcs2/Structural 1768556617 \
+      FL /nas/lrz/home/ge48lin/VHDL_SysDes_IDEA/rcs2/idea_rcs2.vhd \
+      EN work/idea_rcs2 1768556616
+FL /nas/lrz/home/ge48lin/VHDL_SysDes_IDEA/rcs2/mulop.vhd 2026/01/16.10:23:41 P.20131013
+EN work/mulop 1768556659 FL /nas/lrz/home/ge48lin/VHDL_SysDes_IDEA/rcs2/mulop.vhd \
+      PB ieee/std_logic_1164 1381692176 PB ieee/NUMERIC_STD 1381692181
+AR work/mulop/Behavioral 1768556660 \
+      FL /nas/lrz/home/ge48lin/VHDL_SysDes_IDEA/rcs2/mulop.vhd EN work/mulop 1768556659
+FL /nas/lrz/home/ge48lin/VHDL_SysDes_IDEA/rcs2/mux4x1.vhd 2026/01/16.10:23:41 P.20131013
+EN work/mux4x1 1768556665 \
+      FL /nas/lrz/home/ge48lin/VHDL_SysDes_IDEA/rcs2/mux4x1.vhd \
+      PB ieee/std_logic_1164 1381692176
+AR work/mux4x1/Behavioral 1768556666 \
+      FL /nas/lrz/home/ge48lin/VHDL_SysDes_IDEA/rcs2/mux4x1.vhd EN work/mux4x1 1768556665
+FL /nas/lrz/home/ge48lin/VHDL_SysDes_IDEA/rcs2/register_16bit.vhd 2026/01/16.10:23:41 P.20131013
+EN work/register_16bit 1768556663 \
+      FL /nas/lrz/home/ge48lin/VHDL_SysDes_IDEA/rcs2/register_16bit.vhd \
+      PB ieee/std_logic_1164 1381692176
+AR work/register_16bit/Behavioral 1768556664 \
+      FL /nas/lrz/home/ge48lin/VHDL_SysDes_IDEA/rcs2/register_16bit.vhd \
+      EN work/register_16bit 1768556663
+FL /nas/lrz/home/ge48lin/VHDL_SysDes_IDEA/rcs2/rxcver.vhd 2026/01/16.10:23:41 P.20131013
+EN work/rxcver 1768556612 \
+      FL /nas/lrz/home/ge48lin/VHDL_SysDes_IDEA/rcs2/rxcver.vhd \
+      PB ieee/std_logic_1164 1381692176 PB ieee/std_logic_arith 1381692177 \
+      PB ieee/std_logic_misc 1381692178 PB ieee/STD_LOGIC_UNSIGNED 1381692179
+AR work/rxcver/behavior 1768556613 \
+      FL /nas/lrz/home/ge48lin/VHDL_SysDes_IDEA/rcs2/rxcver.vhd EN work/rxcver 1768556612
+FL /nas/lrz/home/ge48lin/VHDL_SysDes_IDEA/rcs2/txmit.vhd 2026/01/16.10:23:41 P.20131013
+EN work/txmit 1768556610 FL /nas/lrz/home/ge48lin/VHDL_SysDes_IDEA/rcs2/txmit.vhd \
+      PB ieee/std_logic_1164 1381692176 PB ieee/std_logic_arith 1381692177 \
+      PB ieee/std_logic_misc 1381692178 PB ieee/STD_LOGIC_UNSIGNED 1381692179
+AR work/txmit/behavior 1768556611 \
+      FL /nas/lrz/home/ge48lin/VHDL_SysDes_IDEA/rcs2/txmit.vhd EN work/txmit 1768556610
+FL /nas/lrz/home/ge48lin/VHDL_SysDes_IDEA/rcs2/uart.vhd 2026/01/16.10:23:41 P.20131013
+EN work/uart 1768556614 FL /nas/lrz/home/ge48lin/VHDL_SysDes_IDEA/rcs2/uart.vhd \
+      PB ieee/std_logic_1164 1381692176 PB ieee/std_logic_arith 1381692177 \
+      PB ieee/std_logic_misc 1381692178 PB ieee/STD_LOGIC_UNSIGNED 1381692179
+AR work/uart/behavior 1768556615 \
+      FL /nas/lrz/home/ge48lin/VHDL_SysDes_IDEA/rcs2/uart.vhd EN work/uart 1768556614 \
+      CP txmit CP rxcver
+FL /nas/lrz/home/ge48lin/VHDL_SysDes_IDEA/rcs2/xorop.vhd 2026/01/16.10:23:41 P.20131013
+EN work/xorop 1768556667 FL /nas/lrz/home/ge48lin/VHDL_SysDes_IDEA/rcs2/xorop.vhd \
+      PB ieee/std_logic_1164 1381692176
+AR work/xorop/Behavioral 1768556668 \
+      FL /nas/lrz/home/ge48lin/VHDL_SysDes_IDEA/rcs2/xorop.vhd EN work/xorop 1768556667

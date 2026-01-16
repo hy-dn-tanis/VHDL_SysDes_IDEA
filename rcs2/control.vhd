@@ -49,9 +49,12 @@ architecture Behavioral of control is
 
 begin
 
-	counter: process(CLK)
+	counter: process(CLK, TRAFO)
    begin
-        if rising_edge(CLK) then
+			
+	if TRAFO = '0' then		
+			 --counter when trafo = 0
+		  if rising_edge(CLK) then
             if internal_state = "111" then
                 if INIT = '1' then
                     internal_state <= "000";  -- reset when state at 111 and INIT = 1
@@ -62,11 +65,29 @@ begin
                 internal_state <= internal_state + 1; -- increment until 111
             end if;
         end if;
+	else
+		--counter when trafo = 1, same but no state 100 and 101
+			if rising_edge(CLK) then
+				if internal_state = "111" then
+					if INIT = '1' then
+						internal_state <= "000";
+					else
+						internal_state <= "111";
+					end if;
+				else
+					if internal_state = "011" then--at this state, increment by 3 instead of 1 as 100 and 101 does not exist
+						internal_state <= internal_state + 3;
+					else
+						internal_state <= internal_state + 1; -- increment until 111
+					end if;
+				end if;
+			end if;
+		end if;
     end process;
 		
 
 				
-	state_logic: process(internal_state, CLK)
+	logic: process(internal_state, TRAFO)
 	begin
 		case internal_state is
 			when "000" =>
@@ -74,37 +95,57 @@ begin
 				EN346 <= '0';
 				EN78 <= '0';
 				RESULT <= '0';
-				S <= "00";
-				S_T <= "00";
+				if TRAFO = '1' then
+					S <= "00";
+					S_T <= "01";
+				else
+					S <= "00";
+					S_T <= "00";
+				end if;
 			when "001" =>
 				EN125 <= '0';
 				EN346 <= '0';
 				EN78 <= '0';
 				RESULT <= '0';
-				S <= "00";
-				S_T <= "00";
+				if TRAFO = '1' then
+					S <= "00";
+					S_T <= "01";
+				else
+					S <= "00";
+					S_T <= "00";
+				end if;
 			when "010" =>
 				EN125 <= '0';
 				EN346 <= '1';
 				EN78 <= '0';
 				RESULT <= '0';
-				S <= "01";
-				S_T <= "00";
+				if TRAFO = '1' then
+					S <= "01";
+					S_T <= "00";
+				else
+					S <= "01";
+					S_T <= "00";
+				end if;
 			when "011" =>
 				EN125 <= '0';
 				EN346 <= '0';
 				EN78 <= '0';
 				RESULT <= '0';
-				S <= "01";
-				S_T <= "00";
-			when "100" =>
+				if TRAFO = '1' then
+					S <= "01";
+					S_T <= "00";
+				else
+					S <= "01";
+					S_T <= "00";
+				end if;
+			when "100" => --no trafo
 				EN125 <= '0';
 				EN346 <= '0';
 				EN78 <= '1';
 				RESULT <= '0';
 				S <= "10";
 				S_T <= "00";
-			when "101" =>
+			when "101" => --no trafo
 				EN125 <= '0';
 				EN346 <= '0';
 				EN78 <= '0';
@@ -116,15 +157,25 @@ begin
 				EN346 <= '0';
 				EN78 <= '0';
 				RESULT <= '1';
-				S <= "11";
-				S_T <= "00";
+				if TRAFO = '1' then
+					S <= "11";
+					S_T <= "10";
+				else
+					S <= "11";
+					S_T <= "00";
+				end if;
 			when "111" =>
 				EN125 <= '0';
 				EN346 <= '0';
 				EN78 <= '0';
 				RESULT <= '0';
-				S <= "11";
-				S_T <= "00";
+				if TRAFO = '1' then
+					S <= "11";
+					S_T <= "10";
+				else
+					S <= "11";
+					S_T <= "00";
+				end if;
 			when others =>
 				EN125 <= 'X';
 				EN346 <= 'X';
