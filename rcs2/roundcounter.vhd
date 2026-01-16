@@ -22,7 +22,8 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
---use IEEE.NUMERIC_STD.ALL;
+
+use IEEE.NUMERIC_STD.ALL;
 
 -- Uncomment the following library declaration if instantiating
 -- any Xilinx primitives in this code.
@@ -41,8 +42,96 @@ entity roundcounter is
 end roundcounter;
 
 architecture Behavioral of roundcounter is
-
+	type state is (sleep, calc, setup);
+	signal ROUND: unsigned(3 downto 0):= "1000"; --
+	signal current_state, next_state : state;
 begin
+	
+	state_register: process(CLK)
+	begin
+		if rising_edge(CLK) then
+			current_state <= next_state;
+		end if;
+	end process;
+	
+	next_state_logic: process(current_state, START, ROUND, RESULT)
+	begin
+		next_state <= current_state;
+		case current_state is
+			when sleep =>
+				INIT <= '0';
+				READY <= '1';
+				if START = '1' then
+					next_state <= setup;
+				end if;
+			when setup =>
+				INIT <= '1';
+				READY <= '0';
+				next_state <= calc;
+			when calc =>
+				INIT <= '0';
+				READY <= '0';
+				if RESULT = '0' then
+					next_state <= calc;
+				else
+					case ROUND is 
+						when "1000" =>
+							next_state <= sleep;
+						when others =>
+							next_state <= setup;
+					end case;
+				end if;
+		end case;
+	end process;
+	
+	
+	round_count: process(CLK, START, RESULT)
+	begin
+		if rising_edge(CLK) then 
+				if ROUND = "1000" then
+					if START = '1' then
+						ROUND <= "0000";
+					end if;
+				else
+					if RESULT = '1' then
+						ROUND <= ROUND + 1;
+					end if;
+				end if;
+		end if;
+	end process;
+	
+	round_logic: process(ROUND)
+	begin
+		case ROUND is
+			when "1000" =>
+				S_i <= '1';
+				TRAFO<= '0';
+			when  "0000" =>
+				S_i <= '1';
+				TRAFO<= '0';
+			when "0001" =>
+				S_i <= '0';
+				TRAFO<= '0';
+			when  "0010" =>
+				S_i <= '0';
+				TRAFO<= '0';
+			when "0011" =>
+				S_i <= '0';
+				TRAFO<= '0';
+			when "0100" =>
+				S_i <= '0';
+				TRAFO<= '0';
+			when "0101" =>
+				S_i <='0';
+				TRAFO<= '0'; 
+			when "0110" =>
+				S_i <= '0';
+				TRAFO<= '0';
+			when "0111" =>
+				S_i <= '0';
+				TRAFO<= '1';
+		end case;
+	end process;
 
 
 end Behavioral;
