@@ -98,30 +98,39 @@ BEGIN
    -- Stimulus process
    stim_proc: process
    begin		
-      -- hold reset state for 100 ns.
+      -- Initial idle
+      INIT <= '0';
+      TRAFO <= '0';
       wait for 100 ns;	
-		INIT <= '1';
-      wait for CLK_period * 2;
-		INIT <= '0';
-		
-		wait for 100 ns;	
-		INIT <= '1';
-      wait for CLK_period * 2;
-		INIT <= '0';
-		
-		
-		wait for 100 ns;	
-		INIT <= '1';
-		TRAFO <= '1';
-      wait for CLK_period * 2;
-		INIT <= '0';
-		
-		wait for 100 ns;	
-		INIT <= '1';
-      wait for CLK_period * 2;
-		INIT <= '0';
-      -- insert stimulus here 
 
+      -- Round computation mode (TRAFO = 0)
+      INIT <= '1';
+      wait for CLK_period * 2;
+      INIT <= '0';
+      wait for 100 ns;
+
+      -- Restart in round computation mode
+      INIT <= '1';
+      wait for CLK_period * 2;
+      INIT <= '0';
+      wait for 100 ns;
+
+      -- Switch to output transformation mode (TRAFO = 1)
+      TRAFO <= '1';
+      wait for 20 ns;
+
+      -- Output transformation mode
+      INIT <= '1';
+      wait for CLK_period * 2;
+      INIT <= '0';
+      wait for 100 ns;
+
+      -- Restart in output transformation mode
+      INIT <= '1';
+      wait for CLK_period * 2;
+      INIT <= '0';
+
+      -- End simulation
       wait;
    end process;
 

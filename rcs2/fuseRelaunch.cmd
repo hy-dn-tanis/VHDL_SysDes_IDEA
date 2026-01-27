@@ -1,1 +1,1 @@
--intstyle "ise" -incremental -o "/nas/lrz/home/ge48lin/VHDL_SysDes_IDEA/rcs2/tb_control_isim_beh.exe" -prj "/nas/lrz/home/ge48lin/VHDL_SysDes_IDEA/rcs2/tb_control_beh.prj" "work.tb_control" 
+-intstyle "ise" -incremental -o "/nas/lrz/home/ge48lin/rcs2_test/tb_clockedround_isim_beh.exe" -prj "/nas/lrz/home/ge48lin/rcs2_test/tb_clockedround_beh.prj" "work.tb_clockedround" 

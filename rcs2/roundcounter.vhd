@@ -43,18 +43,18 @@ end roundcounter;
 
 architecture Behavioral of roundcounter is
 	type state is (sleep, calc, setup);
-	signal ROUND: unsigned(3 downto 0):= "1000"; --
+	signal ROUND_i: unsigned(3 downto 0):= "1000"; --
 	signal current_state, next_state : state;
 begin
 	
-	state_register: process(CLK)
+	state_register: process(CLK) -- state register, change state at rising edge of clock
 	begin
 		if rising_edge(CLK) then
 			current_state <= next_state;
 		end if;
 	end process;
 	
-	next_state_logic: process(current_state, START, ROUND, RESULT)
+	next_state_logic: process(current_state, START, ROUND_i, RESULT)
 	begin
 		next_state <= current_state;
 		case current_state is
@@ -74,7 +74,7 @@ begin
 				if RESULT = '0' then
 					next_state <= calc;
 				else
-					case ROUND is 
+					case ROUND_i is 
 						when "1000" =>
 							next_state <= sleep;
 						when others =>
@@ -85,24 +85,26 @@ begin
 	end process;
 	
 	
-	round_count: process(CLK, START, RESULT)
+	round_count: process(CLK)
 	begin
 		if rising_edge(CLK) then 
-				if ROUND = "1000" then
+				if ROUND_i = "1000" then
 					if START = '1' then
-						ROUND <= "0000";
+						ROUND_i <= "0000";
 					end if;
 				else
 					if RESULT = '1' then
-						ROUND <= ROUND + 1;
+						ROUND_i <= ROUND_i + 1;
 					end if;
 				end if;
 		end if;
 	end process;
+	 
+	ROUND <= std_logic_vector(ROUND_i);
 	
-	round_logic: process(ROUND)
+	round_outputlogic: process(ROUND_i)
 	begin
-		case ROUND is
+		case ROUND_i is
 			when "1000" =>
 				S_i <= '1';
 				TRAFO<= '0';
@@ -130,9 +132,11 @@ begin
 			when "0111" =>
 				S_i <= '0';
 				TRAFO<= '1';
+			when others => 
+				S_i <= '0';
+				TRAFO <= '0';
 		end case;
 	end process;
 
 
 end Behavioral;
-
