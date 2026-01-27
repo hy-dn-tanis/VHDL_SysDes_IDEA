@@ -1,5 +1,5 @@
 ISim log file
-Running: /nas/lrz/home/ge48lin/rcs2_test/tb_clockedround_isim_beh.exe -intstyle ise -gui -tclbatch isim.cmd -wdb /nas/lrz/home/ge48lin/rcs2_test/tb_clockedround_isim_beh.wdb 
+Running: /nas/lrz/home/ge48lin/rcs2_test/tb_idea_rcs2_isim_beh.exe -intstyle ise -gui -tclbatch isim.cmd -wdb /nas/lrz/home/ge48lin/rcs2_test/tb_idea_rcs2_isim_beh.wdb 
 ISim P.20131013 (signature 0xfbc00daa)
 ----------------------------------------------------------------------
 INFO:Security:51 - The XILINXD_LICENSE_FILE environment variable is not set.
@@ -19,16 +19,16 @@ Time resolution is 1 ps
 # wave add /
 # run 1000 ns
 Simulator is doing circuit initialization process.
-at 0 ps, Instance /tb_clockedround/uut/datapath_mod/MULT/ : Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
-at 0 ps, Instance /tb_clockedround/uut/datapath_mod/MULT/ : Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
-at 0 ps, Instance /tb_clockedround/uut/datapath_mod/MULT/ : Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
-at 0 ps, Instance /tb_clockedround/uut/datapath_mod/MULT/ : Warning: NUMERIC_STD.">=": metavalue detected, returning FALSE
+at 0 ps, Instance /tb_idea_rcs2/uut/clocked_round_mod/datapath_mod/MULT/ : Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+at 0 ps, Instance /tb_idea_rcs2/uut/clocked_round_mod/datapath_mod/MULT/ : Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+at 0 ps, Instance /tb_idea_rcs2/uut/clocked_round_mod/datapath_mod/MULT/ : Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+at 0 ps, Instance /tb_idea_rcs2/uut/clocked_round_mod/datapath_mod/MULT/ : Warning: NUMERIC_STD.">=": metavalue detected, returning FALSE
 Finished circuit initialization process.
-at 0 ps, Instance /tb_clockedround/uut/datapath_mod/MULT/ : Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
-at 0 ps, Instance /tb_clockedround/uut/datapath_mod/MULT/ : Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
-at 0 ps, Instance /tb_clockedround/uut/datapath_mod/MULT/ : Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
-at 0 ps, Instance /tb_clockedround/uut/datapath_mod/MULT/ : Warning: NUMERIC_STD.">=": metavalue detected, returning FALSE
-at 0 ps, Instance /tb_clockedround/uut/datapath_mod/MULT/ : Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
-at 0 ps, Instance /tb_clockedround/uut/datapath_mod/MULT/ : Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
-at 0 ps, Instance /tb_clockedround/uut/datapath_mod/MULT/ : Warning: NUMERIC_STD.">=": metavalue detected, returning FALSE
+at 0 ps, Instance /tb_idea_rcs2/uut/clocked_round_mod/datapath_mod/MULT/ : Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+at 0 ps, Instance /tb_idea_rcs2/uut/clocked_round_mod/datapath_mod/MULT/ : Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+at 0 ps, Instance /tb_idea_rcs2/uut/clocked_round_mod/datapath_mod/MULT/ : Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+at 0 ps, Instance /tb_idea_rcs2/uut/clocked_round_mod/datapath_mod/MULT/ : Warning: NUMERIC_STD.">=": metavalue detected, returning FALSE
+at 0 ps, Instance /tb_idea_rcs2/uut/clocked_round_mod/datapath_mod/MULT/ : Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+at 0 ps, Instance /tb_idea_rcs2/uut/clocked_round_mod/datapath_mod/MULT/ : Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+at 0 ps, Instance /tb_idea_rcs2/uut/clocked_round_mod/datapath_mod/MULT/ : Warning: NUMERIC_STD.">=": metavalue detected, returning FALSE
 # exit 0

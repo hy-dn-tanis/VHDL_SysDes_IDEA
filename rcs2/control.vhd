@@ -49,7 +49,7 @@ architecture Behavioral of control is
 
 begin
 
-	counter: process(CLK, TRAFO)
+	counter: process(CLK)
    begin
 			
 	if TRAFO = '0' then		

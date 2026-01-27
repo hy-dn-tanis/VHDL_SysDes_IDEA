@@ -44,8 +44,28 @@ end roundcounter;
 architecture Behavioral of roundcounter is
 	type state is (sleep, calc, setup);
 	signal ROUND_i: unsigned(3 downto 0):= "1000"; --
-	signal current_state, next_state : state;
+	signal current_state, next_state : state:= sleep; --set initial state to sleep
 begin
+	
+	
+	round_count: process(CLK)
+	begin
+		if rising_edge(CLK) then 
+				if (ROUND_i /= "1000") then
+					if (RESULT = '1') then
+						ROUND_i <= ROUND_i + 1;
+					else
+						ROUND_i <= ROUND_i;
+					end if;
+				elsif (ROUND_i = "1000") then
+					if (START = '1') then
+						ROUND_i <= "0000";
+					else
+						ROUND_i <= "0000";
+					end if;
+				end if;
+		end if;
+	end process;
 	
 	state_register: process(CLK) -- state register, change state at rising edge of clock
 	begin
@@ -71,72 +91,69 @@ begin
 			when calc =>
 				INIT <= '0';
 				READY <= '0';
-				if RESULT = '0' then
+				if (RESULT = '0') then
 					next_state <= calc;
+				elsif (RESULT = '1' and ROUND_i = "1000") then
+					next_state <= sleep;
 				else
-					case ROUND_i is 
-						when "1000" =>
-							next_state <= sleep;
-						when others =>
-							next_state <= setup;
-					end case;
+					next_state <= setup;
 				end if;
 		end case;
-	end process;
-	
-	
-	round_count: process(CLK)
-	begin
-		if rising_edge(CLK) then 
-				if ROUND_i = "1000" then
-					if START = '1' then
-						ROUND_i <= "0000";
-					end if;
-				else
-					if RESULT = '1' then
-						ROUND_i <= ROUND_i + 1;
-					end if;
-				end if;
+		
+		--select signals
+		if (ROUND_i = "0000" or ROUND_i = "1000") then
+			S_i <= '1';
+		else
+			S_i <= '0';
+		end if;
+		
+		--trafo signal enabled only on last round
+		if (ROUND_i = "0111") then
+			TRAFO <= '1';
+		else
+			TRAFO <= '0';
 		end if;
 	end process;
+	
+	
 	 
 	ROUND <= std_logic_vector(ROUND_i);
 	
-	round_outputlogic: process(ROUND_i)
-	begin
-		case ROUND_i is
-			when "1000" =>
-				S_i <= '1';
-				TRAFO<= '0';
-			when  "0000" =>
-				S_i <= '1';
-				TRAFO<= '0';
-			when "0001" =>
-				S_i <= '0';
-				TRAFO<= '0';
-			when  "0010" =>
-				S_i <= '0';
-				TRAFO<= '0';
-			when "0011" =>
-				S_i <= '0';
-				TRAFO<= '0';
-			when "0100" =>
-				S_i <= '0';
-				TRAFO<= '0';
-			when "0101" =>
-				S_i <='0';
-				TRAFO<= '0'; 
-			when "0110" =>
-				S_i <= '0';
-				TRAFO<= '0';
-			when "0111" =>
-				S_i <= '0';
-				TRAFO<= '1';
-			when others => 
-				S_i <= '0';
-				TRAFO <= '0';
-		end case;
-	end process;
+--	round_outputlogic: process(ROUND_i)
+--	begin
+--		case ROUND_i is
+--			when "1000" =>
+--				S_i <= '1';
+--				TRAFO<= '0';
+--			when  "0000" =>
+--				S_i <= '1';
+--				TRAFO<= '0';
+--			when "0001" =>
+--				S_i <= '0';
+--				TRAFO<= '0';
+--			when  "0010" =>
+--				S_i <= '0';
+--				TRAFO<= '0';
+--			when "0011" =>
+--				S_i <= '0';
+--				TRAFO<= '0';
+--			when "0100" =>
+--				S_i <= '0';
+--				TRAFO<= '0';
+--			when "0101" =>
+--				S_i <='0';
+--				TRAFO<= '0'; 
+--			when "0110" =>
+--				S_i <= '0';
+--				TRAFO<= '0';
+--			when "0111" =>
+--				S_i <= '0';
+--				TRAFO<= '1';
+--			when others => 
+--				S_i <= '0';
+--				TRAFO <= '0';
+--		end case;
+--	end process;
 
 
 end Behavioral;

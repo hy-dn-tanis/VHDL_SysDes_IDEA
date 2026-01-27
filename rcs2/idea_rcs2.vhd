@@ -117,7 +117,6 @@ signal PK1, PK2, PK3, PK4, PK5, PK6: STD_LOGIC_VECTOR(15 downto 0); -- partial k
 signal RES: STD_LOGIC; --result signal from clocked round
 signal S_i: STD_LOGIC; --select signal for 2x1 multiplexers
 signal INIT: STD_LOGIC;
-signal ENABLE: STD_LOGIC := '1'; --enable for registers always 1
 signal TRAFO: STD_LOGIC;
 signal ROUND : STD_LOGIC_VECTOR(3 downto 0); --4 bit signal for round, outputted from round counter, input to keygen
 
@@ -134,18 +133,15 @@ begin
 		
 	keygen_mod: keygen port map(ROUND,KEY, PK1, PK2, PK3, PK4, PK5, PK6);
 	
-
 	MUX1: mux2x1 port map(S_i,Q1,X_1,X1_MUX);
 	MUX2: mux2x1 port map(S_i,Q2,X_2,X2_MUX);
 	MUX3: mux2x1 port map(S_i,Q3,X_3,X3_MUX);
 	MUX4: mux2x1 port map(S_i,Q4,X_4,X4_MUX);
 	
-
-	REG1: register_16bit port map(CLOCK,ENABLE,Y1_CALC, Q1);
-	REG2: register_16bit port map(CLOCK,ENABLE,Y2_CALC, Q2);
-	REG3: register_16bit port map(CLOCK,ENABLE,Y3_CALC, Q3);
-	REG4: register_16bit port map(CLOCK,ENABLE,Y4_CALC, Q4);
+	REG1: register_16bit port map(CLOCK,RES,Y1_CALC, Q1);
+	REG2: register_16bit port map(CLOCK,RES,Y2_CALC, Q2);
+	REG3: register_16bit port map(CLOCK,RES,Y3_CALC, Q3);
+	REG4: register_16bit port map(CLOCK,RES,Y4_CALC, Q4);
 	
-
 end Structural;
 
