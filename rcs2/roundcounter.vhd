@@ -61,7 +61,7 @@ begin
 					if (START = '1') then
 						ROUND_i <= "0000";
 					else
-						ROUND_i <= "0000";
+						ROUND_i <= "1000";
 					end if;
 				end if;
 		end if;
@@ -115,8 +115,6 @@ begin
 		end if;
 	end process;
 	
-	
-	 
 	ROUND <= std_logic_vector(ROUND_i);
 	
 --	round_outputlogic: process(ROUND_i)

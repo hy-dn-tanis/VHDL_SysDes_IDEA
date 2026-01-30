@@ -1,45 +1,23 @@
-Running: /nas/ei/share/tools/xilinx/ise/14.7/ISE_DS/ISE/bin/lin64/unwrapped/fuse -intstyle ise -incremental -o /nas/lrz/home/ge48lin/rcs2_test/tb_idea_rcs2_isim_beh.exe -prj /nas/lrz/home/ge48lin/rcs2_test/tb_idea_rcs2_beh.prj work.tb_idea_rcs2 
+Running: /nas/ei/share/tools/xilinx/ise/14.7/ISE_DS/ISE/bin/lin64/unwrapped/fuse -intstyle ise -incremental -o /nas/lrz/home/ge48lin/rcs2_test/tb_control_isim_beh.exe -prj /nas/lrz/home/ge48lin/rcs2_test/tb_control_beh.prj work.tb_control 
 ISim P.20131013 (signature 0xfbc00daa)
 Number of CPUs detected in this system: 4
 Turning on mult-threading, number of parallel sub-compilation jobs: 8 
 Determining compilation order of HDL files
-Parsing VHDL file "/nas/lrz/home/ge48lin/rcs2_test/xorop.vhd" into library work
-Parsing VHDL file "/nas/lrz/home/ge48lin/rcs2_test/register_16bit.vhd" into library work
-Parsing VHDL file "/nas/lrz/home/ge48lin/rcs2_test/mux4x1.vhd" into library work
-Parsing VHDL file "/nas/lrz/home/ge48lin/rcs2_test/mulop.vhd" into library work
-Parsing VHDL file "/nas/lrz/home/ge48lin/rcs2_test/addop.vhd" into library work
-Parsing VHDL file "/nas/lrz/home/ge48lin/rcs2_test/datapath.vhd" into library work
 Parsing VHDL file "/nas/lrz/home/ge48lin/rcs2_test/control.vhd" into library work
-Parsing VHDL file "/nas/lrz/home/ge48lin/rcs2_test/roundcounter.vhd" into library work
-Parsing VHDL file "/nas/lrz/home/ge48lin/rcs2_test/mux2x1.vhd" into library work
-Parsing VHDL file "/nas/lrz/home/ge48lin/rcs2_test/keygen.vhd" into library work
-Parsing VHDL file "/nas/lrz/home/ge48lin/rcs2_test/clockedround.vhd" into library work
-Parsing VHDL file "/nas/lrz/home/ge48lin/rcs2_test/idea_rcs2.vhd" into library work
-Parsing VHDL file "/nas/lrz/home/ge48lin/rcs2_test/tb_idea_rcs2.vhd" into library work
+Parsing VHDL file "/nas/lrz/home/ge48lin/rcs2_test/tb_control.vhd" into library work
 Starting static elaboration
 Completed static elaboration
-Fuse Memory Usage: 95052 KB
-Fuse CPU Usage: 1020 ms
+Fuse Memory Usage: 94512 KB
+Fuse CPU Usage: 960 ms
 Compiling package standard
 Compiling package std_logic_1164
 Compiling package numeric_std
 Compiling architecture behavioral of entity control [control_default]
-Compiling architecture behavioral of entity mulop [mulop_default]
-Compiling architecture behavioral of entity addop [addop_default]
-Compiling architecture behavioral of entity register_16bit [register_16bit_default]
-Compiling architecture behavioral of entity mux4x1 [mux4x1_default]
-Compiling architecture behavioral of entity xorop [xorop_default]
-Compiling architecture structural of entity datapath [datapath_default]
-Compiling architecture structural of entity clockedround [clockedround_default]
-Compiling architecture behavioral of entity roundcounter [roundcounter_default]
-Compiling architecture behavioral of entity keygen [keygen_default]
-Compiling architecture behavioral of entity mux2x1 [mux2x1_default]
-Compiling architecture structural of entity idea_rcs2 [idea_rcs2_default]
-Compiling architecture behavior of entity tb_idea_rcs2
+Compiling architecture behavior of entity tb_control
 Time Resolution for simulation is 1ps.
 Waiting for 1 sub-compilation(s) to finish...
-Compiled 28 VHDL Units
-Built simulation executable /nas/lrz/home/ge48lin/rcs2_test/tb_idea_rcs2_isim_beh.exe
-Fuse Memory Usage: 666956 KB
-Fuse CPU Usage: 1300 ms
-GCC CPU Usage: 1240 ms
+Compiled 6 VHDL Units
+Built simulation executable /nas/lrz/home/ge48lin/rcs2_test/tb_control_isim_beh.exe
+Fuse Memory Usage: 666116 KB
+Fuse CPU Usage: 1130 ms
+GCC CPU Usage: 330 ms

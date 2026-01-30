@@ -25,95 +25,71 @@
 -- to guarantee that the testbench will bind correctly to the post-implementation 
 -- simulation model.
 --------------------------------------------------------------------------------
-LIBRARY ieee;
-USE ieee.std_logic_1164.ALL;
- 
--- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
---USE ieee.numeric_std.ALL;
- 
-ENTITY tb_roundcounter IS
-END tb_roundcounter;
- 
-ARCHITECTURE behavior OF tb_roundcounter IS 
- 
-    -- Component Declaration for the Unit Under Test (UUT)
- 
-    COMPONENT roundcounter
-    PORT(
-         CLK : IN  std_logic;
-         START : IN  std_logic;
-         RESULT : IN  std_logic;
-         READY : OUT  std_logic;
-         S_i : OUT  std_logic;
-         INIT : OUT  std_logic;
-         TRAFO : OUT  std_logic;
-         ROUND : OUT  std_logic_vector(3 downto 0)
-        );
-    END COMPONENT;
-    
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.NUMERIC_STD.ALL;
 
-   --Inputs
-   signal CLK : std_logic := '0';
-   signal START : std_logic := '0';
-   signal RESULT : std_logic := '0';
+entity tb_roundcounter is
+end tb_roundcounter;
 
- 	--Outputs
-   signal READY : std_logic;
-   signal S_i : std_logic;
-   signal INIT : std_logic;
-   signal TRAFO : std_logic;
-   signal ROUND : std_logic_vector(3 downto 0);
+architecture behavior of tb_roundcounter is
+  -- UUT ports
+  signal CLK    : std_logic := '0';
+  signal START  : std_logic := '0';
+  signal RESULT : std_logic := '0';
+  signal READY  : std_logic;
+  signal S_i    : std_logic;
+  signal INIT   : std_logic;
+  signal TRAFO  : std_logic;
+  signal ROUND  : std_logic_vector(3 downto 0);
 
-   -- Clock period definitions
-   constant CLK_period : time := 10 ns;
+  constant CLK_PERIOD : time := 10 ns;
+
+  -- helper procedure: wait for rising edge and settle --AI generated idea
+  procedure tick is
+  begin
+    wait until rising_edge(CLK);
+    wait for 1 ns; -- allow combinational outputs to settle
+  end procedure;
+
+begin
+  -- clock
+  clk_proc : process
+  begin
+    CLK <= '0';
+    wait for CLK_PERIOD/2;
+    CLK <= '1';
+    wait for CLK_PERIOD/2;
+  end process;
+
+  -- UUT
+  uut: entity work.roundcounter
+    port map (
+      CLK    => CLK,
+      START  => START,
+      RESULT => RESULT,
+      READY  => READY,
+      S_i    => S_i,
+      INIT   => INIT,
+      TRAFO  => TRAFO,
+      ROUND  => ROUND
+    );
+
+  -- stimulus and checks
+  stim_proc : process 
+  begin
+    -- initial idle (sleep)
+    START  <= '0';
+    RESULT <= '0';
+    tick;
+
+    -- start pulse to enter Setup
+    START <= '1';
+    tick;
+    START <= '0';
+
  
-BEGIN
- 
-	-- Instantiate the Unit Under Test (UUT)
-   uut: roundcounter PORT MAP (
-          CLK => CLK,
-          START => START,
-          RESULT => RESULT,
-          READY => READY,
-          S_i => S_i,
-          INIT => INIT,
-          TRAFO => TRAFO,
-          ROUND => ROUND
-        );
+    wait;
+  end process;
 
-   -- Clock process definitions
-   CLK_process :process
-   begin
-		CLK <= '0';
-		wait for CLK_period/2;
-		CLK <= '1';
-		wait for CLK_period/2;
-   end process;
- 
-	RESULT_PROCESS:process
-   begin
-		RESULT <= '0';
-		wait for CLK_period*2;
-		RESULT <= '1';
-		wait for CLK_period;
-   end process;
-	
-   -- Stimulus process
-   stim_proc: process
-   begin		
-      -- hold reset state for 100 ns.
-      wait for 100 ns;	
-
-      wait for CLK_period*10;
-
-      -- stimuli 
-      --start the process
-      START <= '1';
-		wait for 50 ns; --stop the start signal after 50 ns
-		START <= '0';
-      
-      wait;
-   end process;
-
-END;
+end behavior;

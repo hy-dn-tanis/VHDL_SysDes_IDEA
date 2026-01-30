@@ -51,43 +51,48 @@ begin
 
 	counter: process(CLK)
    begin
-			
+
+	
 	if TRAFO = '0' then		
 			 --counter when trafo = 0 - round calculation mode
 		  if rising_edge(CLK) then
             if internal_state = "111" then
+                internal_state <= "000";
+            elsif internal_state = "000" then
                 if INIT = '1' then
-                    internal_state <= "000";  -- reset when state at 111 and INIT = 1
-                else
-                    internal_state <= "111";  -- hold at 111 
-                end if;
-            else
-                internal_state <= internal_state + 1; -- increment until 111
+						internal_state <= internal_state + 1;
+					 else
+						internal_state <= "000";
+					 end if;
+				else
+					internal_state <= internal_state + 1;
             end if;
         end if;
 	else
 		--counter when trafo = 1, same but no state 100 and 101 - output transformation mode
 			if rising_edge(CLK) then
 				if internal_state = "111" then
+					internal_state <= "000";
+				elsif internal_state = "000" then
 					if INIT = '1' then
+						internal_state <= internal_state + 1;
+					else
 						internal_state <= "000";
-					else
-						internal_state <= "111";
 					end if;
+				elsif internal_state = "011" then
+					internal_state <= internal_state + 3; --at this state, increment by 3 instead of 1 as states 100 and 101 does not exist in TRAFO mode
 				else
-					if internal_state = "011" then--at this state, increment by 3 instead of 1 as 100 and 101 does not exist
-						internal_state <= internal_state + 3;
-					else
-						internal_state <= internal_state + 1; -- increment until 111
-					end if;
+					internal_state <= internal_state + 1; -- increment until 111
 				end if;
 			end if;
 		end if;
+
+
     end process;
 		
 
 				
-	logic: process(internal_state, TRAFO)
+	logic: process(internal_state)
 	begin
 		case internal_state is
 			when "000" =>
@@ -124,7 +129,7 @@ begin
 					S_T <= "00";
 				else
 					S <= "01";
-					S_T <= "01";  -- fixed: was "00"
+					S_T <= "01";  
 				end if;
 			when "011" =>
 				EN125 <= '0';
@@ -136,7 +141,7 @@ begin
 					S_T <= "00";
 				else
 					S <= "01";
-					S_T <= "01";  -- fixed: was "00"
+					S_T <= "01";  
 				end if;
 			when "100" => --no trafo
 				EN125 <= '0';
@@ -144,14 +149,14 @@ begin
 				EN78 <= '1';
 				RESULT <= '0';
 				S <= "10";
-				S_T <= "10";  -- fixed: was "00"
+				S_T <= "10";  
 			when "101" => --no trafo
 				EN125 <= '0';
 				EN346 <= '0';
 				EN78 <= '0';
 				RESULT <= '0';
 				S <= "10";
-				S_T <= "10";  -- fixed: was "00"
+				S_T <= "10";  
 			when "110" =>
 				EN125 <= '0';
 				EN346 <= '0';
@@ -162,7 +167,7 @@ begin
 					S_T <= "10";
 				else
 					S <= "11";
-					S_T <= "11";  -- fixed: was "00"
+					S_T <= "11";  
 				end if;
 			when "111" =>
 				EN125 <= '0';
@@ -174,7 +179,7 @@ begin
 					S_T <= "10";
 				else
 					S <= "11";
-					S_T <= "11";  -- fixed: was "00"
+					S_T <= "11";  
 				end if;
 			when others =>
 				EN125 <= 'X';
