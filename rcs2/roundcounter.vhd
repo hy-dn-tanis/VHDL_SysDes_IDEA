@@ -107,51 +107,12 @@ begin
 			S_i <= '0';
 		end if;
 		
-		--trafo signal enabled only on last round
-		if (ROUND_i = "0111") then
-			TRAFO <= '1';
-		else
-			TRAFO <= '0';
-		end if;
+		--trafo signal used from MSB of round
+		TRAFO <= ROUND_i(3);
+
 	end process;
 	
 	ROUND <= std_logic_vector(ROUND_i);
 	
---	round_outputlogic: process(ROUND_i)
---	begin
---		case ROUND_i is
---			when "1000" =>
---				S_i <= '1';
---				TRAFO<= '0';
---			when  "0000" =>
---				S_i <= '1';
---				TRAFO<= '0';
---			when "0001" =>
---				S_i <= '0';
---				TRAFO<= '0';
---			when  "0010" =>
---				S_i <= '0';
---				TRAFO<= '0';
---			when "0011" =>
---				S_i <= '0';
---				TRAFO<= '0';
---			when "0100" =>
---				S_i <= '0';
---				TRAFO<= '0';
---			when "0101" =>
---				S_i <='0';
---				TRAFO<= '0'; 
---			when "0110" =>
---				S_i <= '0';
---				TRAFO<= '0';
---			when "0111" =>
---				S_i <= '0';
---				TRAFO<= '1';
---			when others => 
---				S_i <= '0';
---				TRAFO <= '0';
---		end case;
---	end process;
-
 
 end Behavioral;

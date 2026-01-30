@@ -112,7 +112,6 @@ end component;
 signal Y1_CALC, Y2_CALC, Y3_CALC, Y4_CALC : STD_LOGIC_VECTOR(15 downto 0); --output of each round module saved in registers R1-R4
 signal X1_MUX, X2_MUX, X3_MUX, X4_MUX: STD_LOGIC_VECTOR(15 downto 0); --output of multiplexer, input to clocked round
 signal PK1, PK2, PK3, PK4, PK5, PK6: STD_LOGIC_VECTOR(15 downto 0); -- partial keys
-
 signal Q1, Q2, Q3, Q4: STD_LOGIC_VECTOR(15 downto 0); --output of registers 1-4
 
 
@@ -120,23 +119,23 @@ signal RES: STD_LOGIC; --result signal from clocked round
 signal S_i: STD_LOGIC; --select signal for 2x1 multiplexers
 signal INIT: STD_LOGIC;
 signal TRAFO: STD_LOGIC;
-signal ROUND : STD_LOGIC_VECTOR(3 downto 0); --4 bit signal for round, outputted from round counter, input to keygen
+signal S_ROUND : STD_LOGIC_VECTOR(3 downto 0); --4 bit signal for round, outputted from round counter, input to keygen
 signal RC_READY: STD_LOGIC;
 begin
  
 
 --concurrent structural assignments 
 
-	clocked_round_mod: clockedround port map(CLOCK => CLK, INIT => INIT, TRAFO => TRAFO, 
-															X1_MUX=> X1, X2_MUX=>X2, X3_MUX => X3, X4_MUX => X4
-															,PK1 => Z1, PK2=>Z2, PK3 => Z3, PK4 => Z4, PK5 => Z5, PK6 => Z6,
-															Y1_CALC => Y1, Y2_CALC => Y2, Y3_CALC => Y3, Y4_CALC => Y4, 
-															RES => RESULT , Y_1, Y_2, Y_3, Y_4);
+	clocked_round_mod: clockedround port map(CLOCK, INIT, TRAFO, 
+															X1_MUX, X2_MUX, X3_MUX , X4_MUX 
+															,PK1 , PK2, PK3, PK4, PK5, PK6,
+															Y1_CALC, Y2_CALC, Y3_CALC, Y4_CALC, 
+															RES, Y_1, Y_2, Y_3, Y_4);
 															
-	round_counter_mod : roundcounter port map(CLOCK => CLK, START => START, RES => RESULT,RC_READY => READY, S_i, INIT, TRAFO, ROUND);
+	round_counter_mod : roundcounter port map(CLOCK, START, RES, RC_READY, S_i, INIT, TRAFO, S_ROUND);
 	READY <= RC_READY;
 		
-	keygen_mod: keygen port map(ROUND,KEY, PK1, PK2, PK3, PK4, PK5, PK6);
+	keygen_mod: keygen port map(S_ROUND,KEY, PK1, PK2, PK3, PK4, PK5, PK6);
 	
 	MUX1: mux2x1 port map(S_i,Q1,X_1,X1_MUX);
 	MUX2: mux2x1 port map(S_i,Q2,X_2,X2_MUX);
@@ -147,6 +146,8 @@ begin
 	REG2: register_16bit port map(CLOCK,RES,Y2_CALC, Q2);
 	REG3: register_16bit port map(CLOCK,RES,Y3_CALC, Q3);
 	REG4: register_16bit port map(CLOCK,RES,Y4_CALC, Q4);
+	
+	
 	
 end Structural;
 

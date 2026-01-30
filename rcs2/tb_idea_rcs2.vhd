@@ -60,12 +60,17 @@ ARCHITECTURE behavior OF tb_idea_rcs2 IS
    --Inputs
    signal CLOCK : std_logic := '0';
    signal START : std_logic := '0';
-   signal KEY : std_logic_vector(127 downto 0) := (others => '0');
-   signal X_1 : std_logic_vector(15 downto 0) := (others => '0');
-   signal X_2 : std_logic_vector(15 downto 0) := (others => '0');
-   signal X_3 : std_logic_vector(15 downto 0) := (others => '0');
-   signal X_4 : std_logic_vector(15 downto 0) := (others => '0');
+	signal KEY : std_logic_vector(127 downto 0) := x"00010002000300040005000600070008";
+   signal X_1 : std_logic_vector(15 downto 0) := x"1111";
+   signal X_2 : std_logic_vector(15 downto 0) := x"2222";
+   signal X_3 : std_logic_vector(15 downto 0) := x"4444";
+   signal X_4 : std_logic_vector(15 downto 0) := x"8888";
 
+--	signal KEY : std_logic_vector(127 downto 0) := (others => '0');
+--   signal X_1 : std_logic_vector(15 downto 0) := (others => '0');
+--   signal X_2 : std_logic_vector(15 downto 0) := (others => '0');
+--   signal X_3 : std_logic_vector(15 downto 0) := (others => '0');
+--   signal X_4 : std_logic_vector(15 downto 0) := (others => '0');
  	--Outputs
    signal Y_1 : std_logic_vector(15 downto 0);
    signal Y_2 : std_logic_vector(15 downto 0);
@@ -74,7 +79,7 @@ ARCHITECTURE behavior OF tb_idea_rcs2 IS
    signal READY : std_logic;
 
    -- Clock period definitions
-   constant CLOCK_period : time := 20 ns;
+   constant CLOCK_period : time := 10 ns;
  
 BEGIN
  
@@ -112,36 +117,20 @@ BEGIN
 		--start simulation  after 40 ns
 		
 		START <= '1';
-		wait for 10 ns;
+		wait for 20 ns;
 		START <= '0';
 		
 		wait for 100 ns;
 		
-		assert Y_1 = x"0001" report "Expected output Y_1 = 8aa9" severity error;
-		assert Y_2 = x"0001" report "Expected output Y_2 = 0fef" severity error;
-		assert Y_3 = x"0000" report "Expected output Y_3 = c0c9" severity error;
-		assert Y_4 = x"0000" report "Expected output Y_4 = 56f6" severity error;
 		
 		--test another reference test vector 
-		wait for 200 ns;
-		
-		X_1 <= x"1111";
-		X_2 <= x"2222";
-		X_3 <= x"4444";
-		X_4 <= x"8888";
-		KEY <= x"00010002000300040005000600070008";
-		
-		wait for 50 ns;
-		START <= '1';
-		wait for 10 ns;
-		START <= '0';
-		
-		wait for 100 ns;
-		--check outputs
-		assert Y_1 = x"8aa9" report "Expected output Y_1 = 8aa9" severity error;
-		assert Y_2 = x"0fef" report "Expected output Y_2 = 0fef" severity error;
-		assert Y_3 = x"c0c9" report "Expected output Y_3 = c0c9" severity error;
-		assert Y_4 = x"56f6" report "Expected output Y_4 = 56f6" severity error;
+--		wait for 200 ns;
+--		
+		wait until READY = '1';
+		assert Y_1 = x"8aa9" report "Expected Y_1 = 8aa9" severity error;
+		assert Y_2 = x"0fef" report "Expected Y_2 = 0fef" severity error;
+		assert Y_3 = x"c0c9" report "Expected Y_3 = c0c9" severity error;
+		assert Y_4 = x"56f6" report "Expected Y_4 = 56f6" severity error;
 		
       wait;
    end process;

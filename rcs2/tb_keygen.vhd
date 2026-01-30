@@ -92,7 +92,24 @@ BEGIN
 
 
       -- insert stimulus here 
-
+		
+		ROUND <= "0001";
+		wait for 20 ns;
+		ROUND <= "0010";
+		wait for 20 ns;
+		ROUND <= "0011";
+		wait for 20 ns;
+		ROUND <= "0100";
+		wait for 20 ns;
+		ROUND <= "0101";
+		wait for 20 ns;
+		ROUND <= "0110";
+		wait for 20 ns;
+		ROUND <= "0111";
+		wait for 20 ns;
+		ROUND <= "1000";
+		wait for 20 ns;
+		
       wait;
    end process;
 

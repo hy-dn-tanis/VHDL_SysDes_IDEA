@@ -56,38 +56,34 @@ begin
 	if TRAFO = '0' then		
 			 --counter when trafo = 0 - round calculation mode
 		  if rising_edge(CLK) then
-            if internal_state = "111" then
-                internal_state <= "000";
-            elsif internal_state = "000" then
-                if INIT = '1' then
-						internal_state <= internal_state + 1;
-					 else
-						internal_state <= "000";
-					 end if;
+          if internal_state = "111" then
+				if INIT = '1' then
+					internal_state <= "000";
 				else
-					internal_state <= internal_state + 1;
-            end if;
+					internal_state <= "111";
+				end if;
+			 else
+				internal_state <= internal_state + 1;
+			 end if;
         end if;
 	else
 		--counter when trafo = 1, same but no state 100 and 101 - output transformation mode
 			if rising_edge(CLK) then
 				if internal_state = "111" then
-					internal_state <= "000";
-				elsif internal_state = "000" then
 					if INIT = '1' then
-						internal_state <= internal_state + 1;
-					else
 						internal_state <= "000";
+					else
+						internal_state <= "111";
 					end if;
-				elsif internal_state = "011" then
-					internal_state <= internal_state + 3; --at this state, increment by 3 instead of 1 as states 100 and 101 does not exist in TRAFO mode
 				else
-					internal_state <= internal_state + 1; -- increment until 111
+					if internal_state = "011" then
+						internal_state <= internal_state + 3; --skip states 100 and 101 in trafo mode
+					else
+						internal_state <= internal_state + 1;
+					end if;
 				end if;
 			end if;
 		end if;
-
-
     end process;
 		
 
